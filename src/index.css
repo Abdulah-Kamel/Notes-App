@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text-main-color {
+  color: #7671df;
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #a6a3ea !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #a6a3ea !important;
+}
+
+.btn-main-color {
+  background-color: #7671df !important;
+  color: #fff !important;
+  &:hover {
+    background-color: #625eb8 !important;
+  }
+}
+
+.link-hover {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  background-color: #f0f3f2 !important;
+}
