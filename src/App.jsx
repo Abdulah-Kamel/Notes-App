@@ -6,6 +6,9 @@ import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import LayOut from "./components/LayOut/LayOut";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+import AuthProvider from "./Context/AuthContext";
+import NoteProvider from "./Context/NoteContext";
+import AuthRoutes from "./AuthRoutes/AuthRoutes";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,14 +32,28 @@ function App() {
     },
     {
       path: "/signup",
-      element: <SignUp />,
+      element: (
+        <AuthRoutes>
+          <SignUp />
+        </AuthRoutes>
+      ),
     },
     {
       path: "/login",
-      element: <Login />,
+      element: (
+        <AuthRoutes>
+          <Login />
+        </AuthRoutes>
+      ),
     },
   ]);
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <AuthProvider>
+      <NoteProvider>
+        <RouterProvider router={router}></RouterProvider>;
+      </NoteProvider>
+    </AuthProvider>
+  );
 }
 
 export default App;
