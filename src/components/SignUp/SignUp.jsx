@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { HashLoader, PulseLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 import { noteContext } from "../../Context/NoteContext";
 import Swal from "sweetalert2";
+import HashLoaderComponent from "../HashLoaderComponent/HashLoaderComponent";
 
 const schema = yup
   .object({
@@ -88,9 +89,7 @@ const SignUp = () => {
   return (
     <>
       {loading ? (
-        <section className="d-flex justify-content-center align-items-center position-absolute top-0 bottom-0 end-0 start-0">
-          <HashLoader size={100} color="#625EB8" />
-        </section>
+        <HashLoaderComponent />
       ) : (
         <section className="d-flex justify-content-center align-items-center py-sm-5 mt-5 ">
           <section className="container py-sm-3">

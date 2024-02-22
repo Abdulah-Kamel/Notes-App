@@ -4,17 +4,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { noteContext } from "../../Context/NoteContext";
 import NoteCard from "../NoteCard/NoteCard";
+
 const Home = () => {
-  const [notes, getAllNotes] = useState(null);
-  const { showAddModal, getNotes } = useContext(noteContext);
-  const getUserNotes = async () => {
-    const data = await getNotes();
-    console.log(data.data.notes);
-    getAllNotes(data.data.notes);
-  };
+  const { showAddModal, getNotes, showDeleteModal } = useContext(noteContext);
+
+  // const getUserNotes = async () => {
+  //   const data = await getNotes();
+  //   console.log(data);
+  //   setAllNotes(data.data.notes);
+  // };
   useEffect(() => {
-    getUserNotes();
-  }, []);
+    getNotes();
+  }, [notes]);
   return (
     <section className="container mt-3">
       <section className="row g-4 py-5">
@@ -30,17 +31,21 @@ const Home = () => {
             </Link>
           </section>
         </section>
-        {notes?.map((note, index) => {
-          return (
-            <section className="col-md-3" key={index}>
-              <NoteCard
-                noteTitle={note.title}
-                noteContent={note.content}
-                noteDate={note.updatedAt}
-              />
-            </section>
-          );
-        })}
+        {!notes
+          ? notes?.map((note, index) => {
+              return (
+                <section className="col-md-3" key={index}>
+                  <NoteCard
+                    noteTitle={note.title}
+                    noteContent={note.content}
+                    noteDate={note.updatedAt}
+                    noteId={note._id}
+                    showDeleteModal={showDeleteModal}
+                  />
+                </section>
+              );
+            })
+          : null}
       </section>
     </section>
   );

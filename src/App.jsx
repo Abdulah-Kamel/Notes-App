@@ -9,8 +9,11 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import AuthProvider from "./Context/AuthContext";
 import NoteProvider from "./Context/NoteContext";
 import AuthRoutes from "./AuthRoutes/AuthRoutes";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -48,11 +51,13 @@ function App() {
     },
   ]);
   return (
-    <AuthProvider>
-      <NoteProvider>
-        <RouterProvider router={router}></RouterProvider>;
-      </NoteProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <NoteProvider>
+          <RouterProvider router={router}></RouterProvider>
+        </NoteProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 

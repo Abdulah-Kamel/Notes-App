@@ -5,7 +5,7 @@
 }
 
 .text-main-color {
-  color: #009688;
+  color: #6c67c7;
 }
 
 .form-control:focus {
@@ -17,13 +17,13 @@
 }
 
 .bg-main {
-  background-color: #009688;
+  background-color: #6c67c7;
 }
 .btn-main-color {
-  background-color: #009688 !important;
+  background-color: #6c67c7 !important;
   color: #fff !important;
   &:hover {
-    background-color: #007267 !important;
+    background-color: #4b478d !important;
   }
 }
 
