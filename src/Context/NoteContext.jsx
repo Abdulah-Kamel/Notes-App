@@ -68,6 +68,7 @@ export default function NoteProvider({ children }) {
           allowEnterKey: true,
           allowEscapeKey: true,
         });
+        getNotes();
       });
   };
 
@@ -123,6 +124,7 @@ export default function NoteProvider({ children }) {
           allowEnterKey: true,
           allowEscapeKey: true,
         });
+        getNotes();
       });
   };
 
@@ -155,6 +157,7 @@ export default function NoteProvider({ children }) {
           showConfirmButton: false,
           timer: 1500,
         });
+        getNotes();
       })
       .catch((error) => {
         Swal.fire({
@@ -170,11 +173,24 @@ export default function NoteProvider({ children }) {
   };
 
   const getNotes = async () => {
-    const data = axios.get(`${baseUrl}notes`, {
-      headers: { token: `3b8ny__${token}` },
-    });
-    return data;
+    try {
+      const response = await axios.get(`${baseUrl}notes`, {
+        headers: { token: `3b8ny__${token}` },
+      });
+      return response.data;
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.response.data.msg,
+        showConfirmButton: true,
+        allowOutsideClick: true,
+        allowEnterKey: true,
+        allowEscapeKey: true,
+      });
+    }
   };
+
   return (
     <noteContext.Provider
       value={{

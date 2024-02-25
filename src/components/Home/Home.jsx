@@ -1,20 +1,20 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { noteContext } from "../../Context/NoteContext";
 import NoteCard from "../NoteCard/NoteCard";
 
 const Home = () => {
   const { showAddModal, getNotes, showDeleteModal } = useContext(noteContext);
-
-  // const getUserNotes = async () => {
-  //   const data = await getNotes();
-  //   console.log(data);
-  //   setAllNotes(data.data.notes);
-  // };
+  const [notes, setAllNotes] = useState(null);
+  const getUserNotes = async () => {
+    const data = await getNotes();
+    setAllNotes(data.notes);
+    console.log(data);
+  };
   useEffect(() => {
-    getNotes();
+    getUserNotes();
   }, [notes]);
   return (
     <section className="container mt-3">
@@ -31,21 +31,18 @@ const Home = () => {
             </Link>
           </section>
         </section>
-        {!notes
-          ? notes?.map((note, index) => {
-              return (
-                <section className="col-md-3" key={index}>
-                  <NoteCard
-                    noteTitle={note.title}
-                    noteContent={note.content}
-                    noteDate={note.updatedAt}
-                    noteId={note._id}
-                    showDeleteModal={showDeleteModal}
-                  />
-                </section>
-              );
-            })
-          : null}
+        {notes?.map((note, index) => {
+          return (
+            <section className="col-md-3" key={index}>
+              <NoteCard
+                noteTitle={note.title}
+                noteContent={note.content}
+                noteDate={note.updatedAt}
+                noteId={note._id}
+              />
+            </section>
+          );
+        })}
       </section>
     </section>
   );
