@@ -41,7 +41,10 @@ const NavBar = () => {
             </li>
 
             <li className="nav-item d-flex justify-content-center align-items-center">
-              <Link className="btn btn-light-color p-1" onClick={logOut}>
+              <Link
+                className="btn btn-light-color p-1 logout-btn"
+                onClick={logOut}
+              >
                 Logout
               </Link>
             </li>

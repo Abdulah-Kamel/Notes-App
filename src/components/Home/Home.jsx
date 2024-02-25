@@ -69,7 +69,7 @@ const Home = () => {
         <HashLoaderComponent />
       ) : (
         <section className="row g-4 py-5">
-          <section className="col-md-3">
+          <section className="col-lg-3 col-md-4 col-sm-6">
             <section className="w-100 h-100 d-flex justify-content-center align-items-center">
               <Link
                 className="btn btn-light-color rounded w-50 p-3 d-flex justify-content-center align-items-center"
@@ -83,7 +83,7 @@ const Home = () => {
           </section>
           {notes?.map((note, index) => {
             return (
-              <section className="col-md-3" key={index}>
+              <section className="col-lg-3 col-md-4 col-sm-6" key={index}>
                 <NoteCard
                   noteTitle={note.title}
                   noteContent={note.content}
